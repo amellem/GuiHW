@@ -90,13 +90,13 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         DecimalFormat df = new DecimalFormat("0.00");
         String input = fahrenheitInput.getText();
-        ConvertStrategy convertedString = new ConvertStrategy();
+        ConvertService convertedString = new ConvertService();
         CalculateService convertDegrees = new CalculateService();
         double convertedStringNumber = convertDegrees.getCalculatedDegrees(convertedString.convertString(input));
         
         String outputNumber = Double.toString(convertedStringNumber);
         
-        celciusOutput.setText(outputNumber);
+        celciusOutput.setText(outputNumber + "\u00b0 C" );
     }//GEN-LAST:event_convertButtonActionPerformed
 
     /**
