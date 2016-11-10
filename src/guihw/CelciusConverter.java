@@ -7,11 +7,13 @@ package guihw;
 
 /**
  *
- * @author Cloudaerius
+ * @author Aerius
  */
-public class CalculateService {
-    
-    public double getCalculatedDegrees(double fahrenheit){
-        return (fahrenheit - 32)/1.8;
+public class CelciusConverter implements ConverterService {
+
+    @Override
+    public double getConvertDegrees(double degrees) {
+        return (degrees * 1.8) + 32;
     }
+    
 }

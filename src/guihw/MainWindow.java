@@ -27,23 +27,26 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         messageLabel = new javax.swing.JLabel();
         fahrenheitInput = new javax.swing.JTextField();
-        celciusOutput = new javax.swing.JLabel();
+        convertedOutput = new javax.swing.JLabel();
         convertButton = new javax.swing.JButton();
+        fehrenheitRadioBtn = new javax.swing.JRadioButton();
+        celciusRadioBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         messageLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         messageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        messageLabel.setText("Enter the degrees in Fahrenheit you wish to convert to Celcius");
+        messageLabel.setText("Enter the degrees you wish to convert and select what measurement you want to convert to");
 
         fahrenheitInput.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         fahrenheitInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        celciusOutput.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        celciusOutput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        celciusOutput.setText("Celcius");
+        convertedOutput.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        convertedOutput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        convertedOutput.setText("Converted");
 
         convertButton.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         convertButton.setText("Convert");
@@ -53,6 +56,13 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        fehrenheitRadioBtn.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        fehrenheitRadioBtn.setSelected(true);
+        fehrenheitRadioBtn.setText("Fehrenheit");
+
+        celciusRadioBtn.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        celciusRadioBtn.setText("Celcius");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,26 +70,37 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fehrenheitRadioBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(celciusRadioBtn))
+                    .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(fahrenheitInput)
-                    .addComponent(celciusOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(convertedOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(106, 106, 106)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(convertButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(260, Short.MAX_VALUE)
+                .addComponent(convertButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(260, 260, 260))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fehrenheitRadioBtn)
+                    .addComponent(celciusRadioBtn))
                 .addGap(18, 18, 18)
                 .addComponent(fahrenheitInput, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(celciusOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(convertButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(convertedOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(convertButton, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -91,12 +112,12 @@ public class MainWindow extends javax.swing.JFrame {
         DecimalFormat df = new DecimalFormat("0.00");
         String input = fahrenheitInput.getText();
         ConvertService convertedString = new ConvertService();
-        CalculateService convertDegrees = new CalculateService();
-        double convertedStringNumber = convertDegrees.getCalculatedDegrees(convertedString.convertString(input));
+        FahrenheitConverter convertDegrees = new FahrenheitConverter();
+        double convertedStringNumber = convertDegrees.getConvertDegrees(convertedString.convertString(input));
         
         String outputNumber = Double.toString(convertedStringNumber);
         
-        celciusOutput.setText(outputNumber + "\u00b0 C" );
+        convertedOutput.setText(outputNumber + "\u00b0 C" );
     }//GEN-LAST:event_convertButtonActionPerformed
 
     /**
@@ -135,9 +156,12 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel celciusOutput;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton celciusRadioBtn;
     private javax.swing.JButton convertButton;
+    private javax.swing.JLabel convertedOutput;
     private javax.swing.JTextField fahrenheitInput;
+    private javax.swing.JRadioButton fehrenheitRadioBtn;
     private javax.swing.JLabel messageLabel;
     // End of variables declaration//GEN-END:variables
 }
