@@ -116,11 +116,11 @@ public class MainWindow extends javax.swing.JFrame {
         ConvertStringToDoubleStrategy convertedString = new ConvertStringToDoubleStrategy();
         if(fehrenheitRadioBtn.isSelected()){
          convertDegrees = new FahrenheitConverter();
-         degreeTypeOutput = "F";
+         degreeTypeOutput = "C";
         }
         if(celciusRadioBtn.isSelected()){
             convertDegrees = new CelciusConverter();
-            degreeTypeOutput = "C";
+            degreeTypeOutput = "F";
         }
         double convertedStringNumber = convertDegrees.getConvertDegrees(convertedString.convertString(input));
         
