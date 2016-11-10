@@ -9,15 +9,15 @@ package guihw;
  *
  * @author Cloudaerius
  */
-public class ConvertService {
+public class ConvertStringToDoubleStrategy {
 
     private String input;
     private double convertedString;
 
-    public ConvertService() {
+    public ConvertStringToDoubleStrategy() {
     }    
     
-    public ConvertService(String input) {
+    public ConvertStringToDoubleStrategy(String input) {
         this.input = input;
     }
     

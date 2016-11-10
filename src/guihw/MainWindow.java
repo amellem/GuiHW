@@ -27,7 +27,7 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup = new javax.swing.ButtonGroup();
         messageLabel = new javax.swing.JLabel();
         fahrenheitInput = new javax.swing.JTextField();
         convertedOutput = new javax.swing.JLabel();
@@ -111,13 +111,22 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         DecimalFormat df = new DecimalFormat("0.00");
         String input = fahrenheitInput.getText();
-        ConvertService convertedString = new ConvertService();
-        FahrenheitConverter convertDegrees = new FahrenheitConverter();
+        String degreeTypeOutput = null;
+        ConverterService convertDegrees = new FahrenheitConverter();
+        ConvertStringToDoubleStrategy convertedString = new ConvertStringToDoubleStrategy();
+        if(fehrenheitRadioBtn.isSelected()){
+         convertDegrees = new FahrenheitConverter();
+         degreeTypeOutput = "F";
+        }
+        if(celciusRadioBtn.isSelected()){
+            convertDegrees = new CelciusConverter();
+            degreeTypeOutput = "C";
+        }
         double convertedStringNumber = convertDegrees.getConvertDegrees(convertedString.convertString(input));
         
         String outputNumber = Double.toString(convertedStringNumber);
         
-        convertedOutput.setText(outputNumber + "\u00b0 C" );
+        convertedOutput.setText(outputNumber + "\u00b0 " + degreeTypeOutput);
     }//GEN-LAST:event_convertButtonActionPerformed
 
     /**
@@ -156,7 +165,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JRadioButton celciusRadioBtn;
     private javax.swing.JButton convertButton;
     private javax.swing.JLabel convertedOutput;
